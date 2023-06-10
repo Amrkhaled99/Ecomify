@@ -2,7 +2,9 @@ package com.ecomify.controller;
 
 
 import com.ecomify.model.Category;
+import com.ecomify.model.Product;
 import com.ecomify.service.CategoryService;
+import com.ecomify.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,9 @@ public class AdminController {
 
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ProductService productService;
+
 
 
 
@@ -41,6 +46,34 @@ public class AdminController {
     @GetMapping("/categories")
     public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
+    }
+
+
+    // CRUD operations for Product entity
+
+    @PostMapping("/products")
+    public Product createProduct(@RequestBody Product product) {
+        return productService.createProduct(product);
+    }
+
+    @GetMapping("/products/{id}")
+    public Product getProduct(@PathVariable Long id) {
+        return productService.getProduct(id);
+    }
+
+    @PutMapping("/products/{id}")
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
+        return productService.updateProduct(id, product);
+    }
+
+    @DeleteMapping("/products/{id}")
+    public void deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+    }
+
+    @GetMapping("/products")
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
     }
 
 

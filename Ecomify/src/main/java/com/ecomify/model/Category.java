@@ -6,7 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Setter
@@ -19,6 +20,7 @@ public class Category{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
     private Long id;
 
     @Column(name = "name")
@@ -27,8 +29,8 @@ public class Category{
 
     private String imgUrl;
 
-    //@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-  //  private List<Product> products = new ArrayList<>();
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Product> products = new ArrayList<>();
 
     // getters and setters
 
