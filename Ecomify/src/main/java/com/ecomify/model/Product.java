@@ -53,6 +53,13 @@ public class Product  {
     private Set<Size> sizes =new HashSet<>();
 
 
+    // Color Relation
+    @ManyToMany()
+    @JoinTable(name = "product_colors",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "color_id")})
+    private Set<Size> colors =new HashSet<>();
+
 
 
 

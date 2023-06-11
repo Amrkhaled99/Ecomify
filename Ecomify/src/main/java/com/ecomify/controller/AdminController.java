@@ -2,9 +2,11 @@ package com.ecomify.controller;
 
 
 import com.ecomify.model.Category;
+import com.ecomify.model.Color;
 import com.ecomify.model.Product;
 import com.ecomify.model.Size;
 import com.ecomify.service.CategoryService;
+import com.ecomify.service.ColorService;
 import com.ecomify.service.ProductService;
 import com.ecomify.service.SizeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,10 @@ public class AdminController {
     private ProductService productService;
     @Autowired
     private SizeService sizeService;
+
+    @Autowired
+     private ColorService colorService;
+
 
 
     // CRUD operations for Category entity
@@ -107,6 +113,34 @@ public class AdminController {
         return sizeService.getAllSizes();
     }
 
+
+
+    // CRUD operations for Color entity
+
+    @PostMapping("/colors")
+    public Color createColor(@RequestBody Color color) {
+        return colorService.createColor(color);
+    }
+
+    @GetMapping("/colors/{id}")
+    public Color getColor(@PathVariable Long id) {
+        return colorService.getColor(id);
+    }
+
+    @PutMapping("/colors/{id}")
+    public Color updateColor(@PathVariable Long id, @RequestBody Color color) {
+        return colorService.updateColor(id, color);
+    }
+
+    @DeleteMapping("/colors/{id}")
+    public void deleteColor(@PathVariable Long id) {
+        colorService.deleteColor(id);
+    }
+
+    @GetMapping("/colors")
+    public List<Color> getAllColors() {
+        return colorService.getAllColors();
+    }
 
 
 }

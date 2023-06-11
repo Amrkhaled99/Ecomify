@@ -1,6 +1,7 @@
 package com.ecomify.service;
 
 import com.ecomify.exception.ResourceNotFoundException;
+import com.ecomify.model.Category;
 import com.ecomify.model.Size;
 import com.ecomify.repository.SizeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,12 @@ public class SizeService {
     }
 
     public Size updateSize(Long id, Size size) {
-        Size existingSize = getSize(id);
-        existingSize.setName(size.getName());
-        return sizeRepository.save(existingSize);
+        Size existingsize = sizeRepository.findById(id).orElse(null);
+        if (existingsize != null) {
+            return sizeRepository.save(existingsize);
+        }
+        return null;
     }
-
     public void deleteSize(Long id) {
         Size existingSize = getSize(id);
         sizeRepository.delete(existingSize);
