@@ -3,8 +3,10 @@ package com.ecomify.controller;
 
 import com.ecomify.model.Category;
 import com.ecomify.model.Product;
+import com.ecomify.model.Size;
 import com.ecomify.service.CategoryService;
 import com.ecomify.service.ProductService;
+import com.ecomify.service.SizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +20,8 @@ public class AdminController {
     private CategoryService categoryService;
     @Autowired
     private ProductService productService;
-
-
+    @Autowired
+    private SizeService sizeService;
 
 
     // CRUD operations for Category entity
@@ -78,7 +80,32 @@ public class AdminController {
 
 
 
+    // CRUD operations for Size entity
 
+    @PostMapping("/sizes")
+    public Size createSize(@RequestBody Size size) {
+        return sizeService.createSize(size);
+    }
+
+    @GetMapping("/sizes/{id}")
+    public Size getSize(@PathVariable Long id) {
+        return sizeService.getSize(id);
+    }
+
+    @PutMapping("/sizes/{id}")
+    public Size updateSize(@PathVariable Long id, @RequestBody Size size) {
+        return sizeService.updateSize(id, size);
+    }
+
+    @DeleteMapping("/sizes/{id}")
+    public void deleteSize(@PathVariable Long id) {
+        sizeService.deleteSize(id);
+    }
+
+    @GetMapping("/sizes")
+    public List<Size> getAllSizes() {
+        return sizeService.getAllSizes();
+    }
 
 
 

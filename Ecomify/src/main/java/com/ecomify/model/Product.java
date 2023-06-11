@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -36,18 +38,22 @@ public class Product  {
     @Column(name = "imgUrl")
     private String imgUrl;
 
+
+    // Category Relation
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;
 
 
-    public Category getCategory() {
-        return category;
-    }
+    // Size Relation
+    @ManyToMany()
+    @JoinTable(name = "product_sizes",
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "size_id")})
+    private Set<Size> sizes =new HashSet<>();
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+
+
 
 
 
